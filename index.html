@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" data-framework="javascript">
+
+<head>
+	<meta charset="utf-8">
+	<title>Calendar App</title>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	 crossorigin="anonymous">
+	<link rel="stylesheet" href="css/calendar.css">
+</head>
+
+<body>
+	<div class="container text-center">
+		<div class="form-group" id="selector">
+			<select class="form-control" id="month"></select>
+			<select class="form-control" id="year"></select>
+			<input class="form-control btn- btn-dark" type="button" value="set" onclick="calendar.list()" />
+		</div>
+		<div id="container" class="calendar"></div>
+		<div id="event"></div>
+	</div>
+
+	<script src="js/calendar.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+	 crossorigin="anonymous"></script>
+</body>
+
+
+</html>

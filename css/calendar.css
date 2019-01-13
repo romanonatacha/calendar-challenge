@@ -1,0 +1,117 @@
+/* body {
+    font-family: 'Open Sans';
+}
+
+.calendar{
+    margin: 30px auto;
+    width: 80%;
+    height: 600px;;
+}
+
+.monthPre{
+    color: gray;
+    text-align: center;
+   }
+   .monthNow{
+    color: #4b4b4b;
+    text-align: center;
+   }
+   .dayNow{
+    border: 2px solid black;
+    color: #17a2b8;
+    text-align: center;
+   }
+   .calendar td{
+    width: 40px;
+   }
+   .monthNow th{
+    background-color: #17a2b8;
+    color: #FFFFFF;
+    text-align: center;
+   }
+   .dayNames{
+    background: #4b4b4b;
+    color: #FFFFFF;
+    text-align: center;
+   } */
+
+   /* [SITE] */
+
+body {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  #selector {
+    padding: 10px;
+    display: inline-flex;
+  }
+
+  #selector select {
+    width: 200px;
+    margin: 15px 5px 0;
+    font-size: 18px;
+  }
+
+  #selector input[type=button] {
+    width: 100px;
+    margin: 15px 5px 0;  
+  }
+  
+  #calendar tr td{
+    padding: 20px 5px;
+    width: 14.28%;
+    vertical-align: top;
+  }
+
+  td.blank {
+    background: #eee;
+  }
+
+  tr.day td {
+    background: #07b4ac;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .evt {
+    margin-top: 5px;
+    padding: 5px;
+    background: #fad8f7;
+    color: #555;
+    font-size: 0.75em;
+    max-height: 5em;
+    overflow: hidden;
+  }
+
+  #event form {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f2f2f2;
+  }
+
+  #event h1 {
+    padding: 10px;
+    margin: 0;
+    font-size: 34px;
+  }
+
+  #evt-date {
+    margin: 10px 0;
+    font-weight: bold;
+  }
+
+  #event textarea {
+    display: block;
+    padding: 10px;
+    margin: 15px auto;
+    min-width: 320px;
+    resize: none;
+  }
+
+  #event input[type=button], #event input[type=submit] {
+    width: 100px;
+    padding: 10px;
+    font-size: 18px;
+    display: inline-block;
+    margin: 0 5px;
+  }
