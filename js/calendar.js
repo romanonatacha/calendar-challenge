@@ -1,86 +1,10 @@
-// function displayCalendar(){
- 
-//     var htmlContent = "";
-//     var FebNumberOfDays = "";
-//     var counter = 1;
-//     var dateNow = new Date();
-//     var month = dateNow.getMonth();
-//     var nextMonth = month + 1;
-//     var prevMonth = month - 1 ;
-//     var day = dateNow.getDate();
-//     var year = dateNow.getFullYear();
-    
-    
-//     //Determing if February (28,or 29)  
-//     if (month == 1) {
-//        if ((year % 100 != 0) && (year % 4 == 0) || (year % 400 == 0)) {
-//          FebNumberOfDays = 29;
-//        } else {
-//          FebNumberOfDays = 28;
-//        }
-//     }
-    
-//     // names of months and week days.
-//     var monthNames = ["January","February","March","April","May","June","July","August","September","October","November", "December"];
-//     var dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thrusday","Friday", "Saturday"];
-//     var dayPerMonth = ["31", "" + FebNumberOfDays + "", "31","30","31","30","31","31","30","31","30","31"]
-    
-//     // days in previous month and next one , and day of week.
-//     var nextDate = new Date(nextMonth + ' 1 ,' + year);
-//     var weekdays= nextDate.getDay();
-//     var weekdays2 = weekdays
-//     var numOfDays = dayPerMonth[month];
-        
-//     // this leave a white space for days of pervious month.
-//     while (weekdays > 0) {
-//        htmlContent += "<td class='monthPre'></td>";
-    
-//     // used in next loop.
-//         weekdays --;
-//     }
-    
-//     // loop to build the calander body.
-//     while (counter <= numOfDays){
-    
-//         // When to start new line.
-//        if (weekdays2 > 6) {
-//            weekdays2 = 0;
-//            htmlContent += "</tr><tr>";
-//        }
-    
-//        // if counter is current day.
-//        // highlight current day using the CSS defined in header.
-//        if (counter == day) {
-//            htmlContent += "<td data-toggle='modal' data-target='#exampleModal' class='dayNow' onMouseOver='this.style.background=\"#17a2b8\"; this.style.color=\"#FFFFFF\"' "+
-//            "onMouseOut='this.style.background=\"#FFFFFF\"; this.style.color=\"#17a2b8\"'>" + counter + "</td>";
-//        } else {
-//            htmlContent += "<td data-toggle='modal' data-target='#exampleModal' class='monthNow' onMouseOver='this.style.background=\"\"; this.style.color=\"#FFFFFF\"'"+
-//            " onMouseOut='this.style.background=\"#FFFFFF\"; this.style.color=\"#4b4b4b\"'>" + counter + "</td>";    
-//        }
-       
-//        weekdays2 ++;
-//        counter ++;
-//     }
-    
-//     // building the calendar html body.
-//     var calendarBody = "<table class='calendar table-bordered'> <tr class='monthNow'><th colspan='7'>"
-//     + monthNames[month] + " " + year +"</th></tr>";
-//     calendarBody += "<tr class='dayNames'><td>Sun</td><td>Mon</td><td>Tue</td>" +
-//     "<td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td></tr>";
-//     calendarBody += "<tr>";
-//     calendarBody += htmlContent;
-//     calendarBody += "</tr></table>";
-//     // set the content of div .
-//     document.getElementById("calendar").innerHTML=calendarBody;
-    
-//    }
-
 var calendar = {
     monthName : ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], // Month Names
     data : null,
     currentDay : 0,
     currentMonth : 0,
-    currentYear : 0, 
+    currentYear : 0,
+     
     list : function () {
       calendar.currentMonth = parseInt(document.getElementById("month").value);
       calendar.currentYear = parseInt(document.getElementById("year").value);
@@ -88,7 +12,7 @@ var calendar = {
           startDay = new Date(calendar.currentYear, calendar.currentMonth, 1).getDay(),
           endDay = new Date(calendar.currentYear, calendar.currentMonth, daysInMonth).getDay();
   
-      // INIT & LOAD DATA FROM LOCALSTORAGE
+      // init and load data from localstore
       calendar.data = localStorage.getItem("cal-" + calendar.currentMonth + "-" + calendar.currentYear);
       if (calendar.data==null) {
         localStorage.setItem("cal-" + calendar.currentMonth + "-" + calendar.currentYear, "{}");
@@ -97,8 +21,7 @@ var calendar = {
         calendar.data = JSON.parse(calendar.data);
       }
   
-      // DRAWING CALCULATION
-      // Determine the number of blank squares before start of month
+      // determine the number of blank squares before start of month
       var squares = [];
       if (startDay != 0) {
         for (var i = 0; i < startDay; i++) {
@@ -106,21 +29,20 @@ var calendar = {
         }
       }
   
-      // Populate the days of the month
+      // populate the days of the month
       for (var i = 1; i <= daysInMonth; i++) {
         squares.push(i);
       }
   
-      // Determine the number of blank squares after end of month
+      // determine the number of blank squares after end of month
       if (endDay != 6) {
         var blanks = endDay == 0 ? 6 : 6 - endDay;
         for (var i = 0; i < blanks; i++) {
           squares.push("b");
         }
       }
-  
-      // DRAW
-      // Container & Table
+
+      // container and calendar table
       var container = document.getElementById("container"),
           cTable = document.createElement("table");
       cTable.id = "calendar";
@@ -128,7 +50,7 @@ var calendar = {
       container.innerHTML = "";
       container.appendChild(cTable);
   
-      // First row - Days
+      // days
       var cRow = document.createElement("tr"),
           cCell = null,
           days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -140,7 +62,7 @@ var calendar = {
       cRow.classList.add("day");
       cTable.appendChild(cRow);
   
-      // Days in Month
+      // days in month
       var total = squares.length;
       cRow = document.createElement("tr");
       for (var i = 0; i < total; i++) {
@@ -171,17 +93,17 @@ var calendar = {
     // calendar.show() : show edit event docket for selected day
     // PARAM el : Reference back to cell clicked
   
-      // FETCH EXISTING DATA
+      // fetch existing data
       calendar.currentDay = el.getElementsByClassName("dd")[0].innerHTML;
   
-      // DRAW FORM
+      // form
       var tForm = "<h1 class='form-title'>" + (calendar.data[calendar.currentDay] ? "edit" : "add") + " event</h1>";
       tForm += "<div>" + calendar.currentDay + " " + calendar.monthName[calendar.currentMonth] + " " + calendar.currentYear + "</div>";
       tForm += "<textarea id='evt-details' required>" + (calendar.data[calendar.currentDay] ? calendar.data[calendar.currentDay] : "") + "</textarea>";
       tForm += "<input class='form-control btn btn-danger' type='button' value='Delete' onclick='calendar.del()'/>";
       tForm += "<input class='form-control btn btn-success' type='submit' value='Save'/>";
   
-      // ATTACH
+      // attach
       var eForm = document.createElement("form");
       eForm.addEventListener("submit", calendar.save);
       eForm.innerHTML = tForm;
@@ -212,14 +134,14 @@ var calendar = {
     }
   };
   
-  // INIT - DRAW MONTH & YEAR SELECTOR
+  // draw month and year selector
   window.addEventListener("load", function () {
-    // DATE NOW
+    // date now
     var now = new Date(),
         nowMonth = now.getMonth(),
         nowYear = parseInt(now.getFullYear());
   
-    // APPEND MONTHS
+    // append months
     var month = document.getElementById("month");
     for (var i = 0; i < 12; i++) {
       var opt = document.createElement("option");
@@ -231,10 +153,10 @@ var calendar = {
       month.appendChild(opt);
     }
   
-    // APPEND YEARS
-    // Set to 10 years range. Change this as you like.
+    // append years
+    // set to 20 years range.
     var year = document.getElementById("year");
-    for (var i = nowYear - 10; i <= nowYear + 10; i++) {
+    for (var i = nowYear - 10; i <= nowYear + 20; i++) {
       var opt = document.createElement("option");
       opt.value = i;
       opt.innerHTML = i;
@@ -244,6 +166,6 @@ var calendar = {
       year.appendChild(opt);
     }
   
-    // DRAW CALENDAR
+    // draw calendar
     calendar.list();
   });
